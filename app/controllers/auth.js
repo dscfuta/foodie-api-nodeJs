@@ -57,7 +57,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.get('/profile', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  res.status(200).send(req.user);
+  res.json({ user: req.user });
 });
 
 router.put('/profile', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
@@ -73,7 +73,7 @@ router.put('/profile', passport.authenticate('jwt', { session: false }), async (
       { $set: req.body },
       { new: true },
     );
-    res.status(200).send(user);
+    res.json({ user });
   } catch (err) {
     next(err);
   }
