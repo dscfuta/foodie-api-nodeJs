@@ -1,11 +1,15 @@
 const express = require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+const UserModel = mongoose.model('Users');
 // const jsonPatch = require('jsonpatch');
 
 const router = express.Router();
 
 module.exports = (app) => {
-  app.use('/', router);
+  app.use('/api', router);
 };
 router.post('/login', (req, res, next) => {
   passport.authenticate('user-login', (err, user, info) => {
@@ -50,4 +54,27 @@ router.post('/signup', (req, res, next) => {
       res.status(400).json(info);
     }
   })(req, res, next);
+});
+
+router.get('/profile', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  res.status(200).send(req.user);
+});
+
+router.put('/profile', passport.authenticate('jwt', { session: false }), async (req, res, next) => {
+  let user;
+  const { password } = req.body;
+
+  try {
+    if (password) {
+      req.body.password = await bcrypt.hash(password, 15);
+    }
+    user = await UserModel.findOneAndUpdate(
+      { email: req.user.email },
+      { $set: req.body },
+      { new: true },
+    );
+    res.status(200).send(user);
+  } catch (err) {
+    next(err);
+  }
 });

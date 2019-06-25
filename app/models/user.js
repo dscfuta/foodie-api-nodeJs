@@ -1,14 +1,12 @@
 // Example model
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const helper = require('./helpers');
 
 const { Schema } = mongoose;
 
 const UserSchema = new Schema(
   {
-    name: String,
+    username: String,
     email: {
       type: String,
       unique: true,
@@ -19,6 +17,8 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    address: String,
+    phone: String,
   },
   {
     strictQuery: true,

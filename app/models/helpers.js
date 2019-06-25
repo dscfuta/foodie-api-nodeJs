@@ -11,7 +11,6 @@ exports.generateJwt = function generateJwt() {
     process.env.SECRET,
     {
       algorithm: 'HS256',
-      expiresIn: 120,
       subject: user.email,
     },
   );

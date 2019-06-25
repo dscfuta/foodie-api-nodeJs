@@ -70,6 +70,9 @@ class Passport {
               user = new UserModel({
                 email,
                 password,
+                address: req.body.address,
+                username: req.body.username,
+                phone: req.body.phone,
               });
               await user.save();
               return done(null, user, {
