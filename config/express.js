@@ -39,6 +39,7 @@ module.exports = (app) => {
   mongoose.connect(config.db, {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   });
 
   mongoose.connection.on('error', () => {

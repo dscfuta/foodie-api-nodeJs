@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const helper = require('./helpers');
 
 const { Schema } = mongoose;
-
+const { ObjectId } = Schema.Types;
 const UserSchema = new Schema(
   {
     username: String,
@@ -19,6 +19,7 @@ const UserSchema = new Schema(
     },
     address: String,
     phone: String,
+    cart: { type: ObjectId, ref: 'Cart' },
   },
   {
     strictQuery: true,
@@ -37,4 +38,4 @@ UserSchema.pre('save', helper.saveUser);
 UserSchema.methods.comparePassword = helper.compareUserPassword;
 UserSchema.methods.generateJwt = helper.generateJwt;
 
-module.exports = mongoose.models.Users || mongoose.model('Users', UserSchema);
+module.exports = mongoose.models.Users || mongoose.model('User', UserSchema);

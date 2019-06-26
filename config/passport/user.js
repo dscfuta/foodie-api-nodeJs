@@ -4,7 +4,7 @@ const validator = require('validator');
 const { ExtractJwt, Strategy: JwtStrategy } = require('passport-jwt');
 const mongoose = require('mongoose');
 
-const UserModel = mongoose.model('Users');
+const UserModel = mongoose.model('User');
 
 const { SECRET } = process.env;
 class Passport {

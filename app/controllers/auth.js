@@ -3,7 +3,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const UserModel = mongoose.model('Users');
+const UserModel = mongoose.model('User');
 // const jsonPatch = require('jsonpatch');
 
 const router = express.Router();
