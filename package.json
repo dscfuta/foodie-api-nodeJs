@@ -25,7 +25,7 @@
     "express": "^4.13.3",
     "glob": "^6.0.4",
     "jsonpatch": "^3.0.1",
-    "jsonwebtoken": "^8.2.1",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^2.3.0",
     "mongoose": "^5.6.0",
     "morgan": "^1.6.1",
